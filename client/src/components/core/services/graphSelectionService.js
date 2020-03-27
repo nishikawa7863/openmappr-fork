@@ -27,6 +27,7 @@ function($rootScope, $q, renderGraphfactory, dataGraph, nodeRenderer, inputMgmtS
     this.getSubNetwork = getSubNetwork;
     this.getSelectedNodesLinksIds = getSelectedNodesLinksIds;
     this.selectionInPop = selectionInPop;
+    this.dataGraph = dataGraph;
 
     this.isAnySelected = isAnySelected;
     this.getSelectedNodeNeighbours = function getSelectedNodeNeighbours() {return selectedNodeNeighbours;};

@@ -3,8 +3,8 @@
  * This service builds intelligence about an attribute in the dataset
  */
 angular.module('common')
-    .service('FilterPanelService', ['$timeout', '$q', 'dataGraph', 'AttrInfoService', 'attrUIService', 'renderGraphfactory', 'graphHoverService',
-        function ($timeout, $q, dataGraph, AttrInfoService, attrUIService, renderGraphfactory, graphHoverService) {
+    .service('FilterPanelService', ['$timeout', '$q', 'dataGraph', 'AttrInfoService', 'attrUIService', 'renderGraphfactory', 'graphHoverService', 'constSteps',
+        function ($timeout, $q, dataGraph, AttrInfoService, attrUIService, renderGraphfactory, graphHoverService, constSteps) {
             "use strict";
 
             /*************************************
@@ -330,7 +330,7 @@ angular.module('common')
                 if (element.length) {
                     steps.push({
                         element: element[0],
-                        intro: 'These are keywords that come up in the data set'
+                        intro: constSteps.two
                     });
                 }
 
@@ -342,7 +342,7 @@ angular.module('common')
                 if (element.length) {
                     steps.push({
                         element: element[0],
-                        intro: 'This is better at filtering data by different categories and shows the count of data points in these categories.'
+                        intro: constSteps.three
                     });
                 }
 
@@ -353,7 +353,7 @@ angular.module('common')
                 var steps = [
                     {
                         element: '#mainFilterPanel',
-                        intro: 'By knowing how this section works, you will be able to browse through data at your convenience, ~as if you were searching through a variety of shoes on zappos to find the perfect pair.~'
+                        intro: constSteps.one
                     },
                 ];
                 steps = addKeywordStepIfExists(steps);
@@ -374,3 +374,4 @@ angular.module('common')
 
         }
     ]);
+    angular.$inject = ['constSteps'];  

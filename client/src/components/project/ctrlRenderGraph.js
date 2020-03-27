@@ -51,6 +51,7 @@ angular.module('common')
             $scope.zoomInfo.zoomOut = zoomService.zoomOut;
             $scope.zoomInfo.zoomIn = zoomService.zoomIn;
             $scope.zoomInfo.zoomExtents = zoomExtents;
+            $scope.zoomInfo.zoomReset = zoomService.zoomReset;
             $scope.switchSnapshot = switchSnapshot; //A function for children to switch between snapshots and networks
 
             $scope.updatePlotType = function(plotType) {

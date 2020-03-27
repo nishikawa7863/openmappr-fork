@@ -74,7 +74,7 @@ angular.module('player')
                 slidesPanelOpen: false,
                 modalPanelOpen: false,
                 persistFilterPanel: false,
-                currentPanelOpen: 'slides',
+                currentPanelOpen: 'info',
 
                 //hovers
                 infoPanelHover: false,
@@ -257,8 +257,6 @@ angular.module('player')
                     if($scope.player.settings.showModal){
                         $scope.hasModal = true;
                         $scope.panelUI.openPanel('modal');
-                    } else {
-                        $scope.panelUI.openPanel('slides');
                     }
 
                     //info btn triggering event in parent

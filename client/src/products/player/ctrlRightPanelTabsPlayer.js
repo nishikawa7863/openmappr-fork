@@ -34,6 +34,43 @@ angular.module('common')
                     tooltipTitle: 'See slide information and change views if there are more than one',
                     cmd: function() {
                         $scope.panelUI.openPanel('slides');
+                        $timeout(function () {
+                            ngIntroService.setOptions(
+                                {
+                                    steps:[
+                                        {
+                                            element: '#slideNavigator',
+                                            intro: 'Slide Navigator'
+                                        },
+                                        {
+                                            element: '#slideDescription',
+                                            intro: 'Slide Description'
+                                        }, 
+                                        {
+                                            element: '#mainCanvas',
+                                            intro: 'Main Canvas'
+                                        },
+                                        {
+                                            element: '#nodeZoom',
+                                            intro: 'Zoom in to node'
+                                        }
+                                    ]
+                                }
+                            );
+                            ngIntroService.onBeforeChange(function (targetElement) {
+                                if (targetElement.id == ''){
+                                    var nodeID = graphSelectionService.dataGraph.getAllNodes()[0].id;
+                                    graphSelectionService.selectByIds(nodeID);
+                                    $scope.zoomInfo.zoomExtents();
+                                }                         
+                            });
+                            ngIntroService.onExit(function () {
+                                console.log('zoomOut');
+                                graphSelectionService.clearSelectionCaches();
+                                $scope.zoomInfo.zoomReset();                      
+                            });
+                            ngIntroService.start();
+                        }, 100);
                     }
                 },
                 {
