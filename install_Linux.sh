@@ -26,6 +26,9 @@ sleep 2
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 nvm install 8.12
 
+gem install sass
+gem install compass
+
 # install yo bower grunt-cli
 echo
 echo "Install yo bower grunt-cli in node."
@@ -40,3 +43,8 @@ echo
 sleep 2
 npm install
 bower install
+
+grunt
+
+./run_local_mode.sh
+

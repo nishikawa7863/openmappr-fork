@@ -330,7 +330,7 @@ angular.module('common')
                 if (element.length) {
                     steps.push({
                         element: element[0],
-                        intro: constSteps.two
+                        intro: constSteps.keyword
                     });
                 }
 
@@ -342,7 +342,7 @@ angular.module('common')
                 if (element.length) {
                     steps.push({
                         element: element[0],
-                        intro: constSteps.three
+                        intro: constSteps.category
                     });
                 }
 
@@ -353,7 +353,7 @@ angular.module('common')
                 var steps = [
                     {
                         element: '#mainFilterPanel',
-                        intro: constSteps.one
+                        intro: constSteps.main
                     },
                 ];
                 steps = addKeywordStepIfExists(steps);

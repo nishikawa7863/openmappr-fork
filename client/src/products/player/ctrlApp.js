@@ -1,6 +1,6 @@
 angular.module('player')
-    .controller('AppCtrl', ['$q','$sce', '$scope', '$rootScope', '$uibModal', '$routeParams', '$timeout', '$location', '$http', '$cookies', 'playerFactory', 'projFactory', 'dataService', 'networkService', 'dataGraph', 'snapshotService', 'graphSelectionService', 'layoutService', 'searchService', 'browserDetectService', 'BROADCAST_MESSAGES', 'renderGraphfactory',
-        function($q, $sce, $scope, $rootScope, $uibModal, $routeParams, $timeout, $location, $http, $cookies, playerFactory, projFactory, dataService, networkService, dataGraph, snapshotService,graphSelectionService, layoutService, searchService, browserDetectService, BROADCAST_MESSAGES, renderGraphfactory) {
+    .controller('AppCtrl', ['$q','$sce', '$scope', '$rootScope', '$uibModal', '$routeParams', '$timeout', '$location', '$http', '$cookies', 'playerFactory', 'projFactory', 'dataService', 'networkService', 'dataGraph', 'snapshotService', 'graphSelectionService', 'layoutService', 'searchService', 'browserDetectService', 'BROADCAST_MESSAGES', 'renderGraphfactory', 'ngIntroService', '$window',
+        function($q, $sce, $scope, $rootScope, $uibModal, $routeParams, $timeout, $location, $http, $cookies, playerFactory, projFactory, dataService, networkService, dataGraph, snapshotService,graphSelectionService, layoutService, searchService, browserDetectService, BROADCAST_MESSAGES, renderGraphfactory, ngIntroService, $window) {
             'use strict';
 
             /*************************************
@@ -74,7 +74,7 @@ angular.module('player')
                 slidesPanelOpen: false,
                 modalPanelOpen: false,
                 persistFilterPanel: false,
-                currentPanelOpen: 'info',
+                currentPanelOpen: 'modal',
 
                 //hovers
                 infoPanelHover: false,
@@ -254,10 +254,24 @@ angular.module('player')
                     projFactory.setProjSettingsForPlayer($scope.player.projSettings || {});
 
                     //MODAL
-                    if($scope.player.settings.showModal){
+                    //if($scope.player.settings.showModal){
                         $scope.hasModal = true;
                         $scope.panelUI.openPanel('modal');
-                    }
+                        if(!$window.localStorage.modal)
+                            $timeout(function () {
+                                ngIntroService.setOptions(
+                                    {
+                                        steps:[
+                                            {
+                                                element: '#firstLoad',
+                                                intro: 'First Load just says Welcome to Mappr + a 250 wd max introduction'
+                                            }
+                                        ]
+                                    }
+                                );
+                                ngIntroService.start();
+                            }, 100);
+                    //}
 
                     //info btn triggering event in parent
                     if($scope.player.settings.infoClickToParent) {
